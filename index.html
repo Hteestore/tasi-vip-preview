@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج نظام أتمتة اشتراكات تلجرام وسلة | VIP Telegram Automation</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style> body { font-family: 'Tajawal', sans-serif; } </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+<!-- Header -->
+<header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-4 py-3">
+<div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg shadow-emerald-500/20"> ⚡ </div>
+<div>
+<h1 class="font-extrabold text-base sm:text-lg text-white">نظام أتمتة VIP لمحللي تاسي</h1>
+<p class="text-xs text-slate-400">نموذج العرض التفاعلي: الربط بين متجر سلة وقناة تلجرام الخاصة</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex items-center gap-1 bg-slate-800/90 p-1 rounded-xl border border-slate-700/60 text-xs sm:text-sm">
+<button id="tab-checkout-btn" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition bg-emerald-500 text-slate-950 font-bold shadow"> 1. الدفع عبر سلة </button>
+<button id="tab-telegram-btn" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition text-slate-300 hover:text-white"> 2. تجربة المشترك بتلجرام </button>
+<button id="tab-admin-btn" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition text-slate-300 hover:text-white"> 3. لوحة تحكم المحلل </button>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 py-6">
+<!-- Notification Toast -->
+<div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 px-5 py-2.5 rounded-xl font-bold shadow-2xl z-50 text-sm flex items-center gap-2 transition duration-300">
+<span>✓</span> <span id="toast-text">تم تنفيذ الإجراء بنجاح</span>
+</div>
+
+<!-- TAB 1: SALLA CHECKOUT -->
+<section id="section-checkout" class="tab-content block">
+<div class="max-w-xl mx-auto bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+<div class="absolute -top-24 -left-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+<!-- Analyst Store Header -->
+<div class="text-center pb-6 border-b border-slate-800">
+<div class="inline-block relative">
+<div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center text-3xl shadow-xl"> 📈 </div>
+<span class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.5 rounded-md">موثق</span>
+</div>
+<h2 class="text-xl font-bold text-white mt-3">منصة المحلل فهد التميمي (تاسي)</h2>
+<p class="text-xs text-slate-400 mt-1">متجر موثق في منصة سلة • سجل تجاري / وثيقة عمل حر</p>
+</div>
+
+<!-- Product Box -->
+<div class="my-6 bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+<div class="flex items-start justify-between gap-4">
+<div>
+<span class="inline-block bg-emerald-500/10 text-emerald-400 text-xs px-2.5 py-1 rounded-full font-bold mb-2">الباقة الأكثر طلباً</span>
+<h3 class="text-lg font-bold text-white">اشتراك قناة التوصيات وتحليل السيولة VIP</h3>
+<p class="text-xs text-slate-400 mt-1">تجديد شهري تلقائي • دخول فوري بعد الدفع</p>
+</div>
+<div class="text-left shrink-0">
+<span class="text-2xl font-black text-emerald-400">199</span>
+<span class="text-xs text-slate-400 mr-1">ر.س / شهر</span>
+</div>
+</div>
+
+<ul class="mt-4 space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-3">
+<li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> متابعة حركة سيولة كبار المضاربين اللحظية في تاسي</li>
+<li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 3 إلى 5 فرص تداول أسبوعية مع تحديد وقف الخسارة والهدف</li>
+<li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> بث صوتي أسبوعي لتحليل المؤشر العام وقطاعات السوق</li>
+</ul>
+</div>
+
+<!-- Simulated Customer Form -->
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-semibold text-slate-400 mb-1">اسم المشترك</label>
+<input id="client-name" type="text" value="مشاري العتيبي" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-400 mb-1">رقم الجوال (لربط حساب تلجرام)</label>
+<input id="client-phone" type="text" value="0551234567" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500 font-mono text-left">
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-400 mb-1">معرف تلجرام (Username)</label>
+<input id="client-tg" type="text" value="@meshari_trader" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500 font-mono text-left">
+</div>
+
+<!-- Payment Action Buttons -->
+<div class="pt-2 space-y-2.5">
+<button id="pay-apple-btn" class="w-full bg-black hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 border border-slate-700 transition shadow-lg">
+<span class="text-base font-bold">Pay with</span> <span class="text-lg">Pay</span> <span class="text-xs text-slate-400 mr-2">(199 ر.س)</span>
+</button>
+<button id="pay-mada-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-extrabold py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-600/20">
+<span>💳 الدفع عبر مدى / فيزا (199 ر.س)</span>
+</button>
+</div>
+
+<p class="text-center text-[11px] text-slate-500 mt-2"> 🔒 دفع آمن ومشفر 100% عبر بوابات الدفع الرسمية المعتمدة في المملكة </p>
+</div>
+</div>
+</section>
+
+<!-- TAB 2: TELEGRAM BOT SIMULATION -->
+<section id="section-telegram" class="tab-content hidden">
+<div class="max-w-md mx-auto bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col h-[620px]">
+<!-- Telegram App Header -->
+<div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold shadow"> 🤖 </div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-bold text-sm text-white">بوت توصيات تاسي VIP</h3>
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+</div>
+<p class="text-[11px] text-slate-400">@TasiVipAutomationBot • روبوت آلي</p>
+</div>
+</div>
+<span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md">Webhook Live</span>
+</div>
+
+<!-- Chat Messages Body -->
+<div id="tg-chat-body" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs bg-gradient-to-b from-slate-950 to-slate-900">
+<!-- Message 1 from Bot -->
+<div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl rounded-tr-none p-4 max-w-[92%] shadow-md space-y-2">
+<div class="flex items-center justify-between text-[11px] text-emerald-400 font-bold border-b border-slate-700 pb-1.5">
+<span>✓ تم استلام عملية الدفع من سلة</span>
+<span class="text-slate-400 font-normal">الآن</span>
+</div>
+<p class="text-slate-200"> مرحباً بك يا <strong id="tg-buyer-name" class="text-white">مشاري العتيبي</strong>! 🎉 تم تفعيل اشتراكك في باقة: <strong>VIP التوصيات والسيولة اللحظية</strong> بنجاح. </p>
+<div class="bg-slate-900/80 rounded-xl p-2.5 font-mono text-[11px] space-y-1 text-slate-300 border border-slate-800">
+<div>رقم الفاتورة: <span class="text-emerald-400">#SL-98241</span></div>
+<div>تاريخ البداية: <span id="tg-start-date">اليوم</span></div>
+<div>تاريخ الانتهاء: <span id="tg-end-date" class="text-amber-400">بعد 30 يوماً</span></div>
+<div>حالة الرابط: <span class="text-emerald-400">صالح لمستخدم واحد فقط 🔒</span></div>
+</div>
+
+<!-- Single-Use Invite Button -->
+<div class="pt-1">
+<button id="tg-join-channel-btn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-2.5 rounded-xl shadow-lg flex items-center justify-center gap-2 transition">
+<span>🚀 دخول القناة الخاصة الآن (رابط حصري)</span>
+</button>
+<p class="text-[10px] text-slate-400 text-center mt-1">تنبيه: الرابط مخصص لك ويلغى فور استخدامه لمنع التسريب</p>
+</div>
+</div>
+
+<!-- Bot Command Menu -->
+<div class="grid grid-cols-3 gap-1.5 pt-2">
+<button id="cmd-status-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 py-1.5 px-2 rounded-lg text-center font-medium border border-slate-700/50"> /حالة_اشتراكي </button>
+<button id="cmd-renew-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 py-1.5 px-2 rounded-lg text-center font-medium border border-slate-700/50"> /تجديد_الاشتراك </button>
+<button id="cmd-support-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 py-1.5 px-2 rounded-lg text-center font-medium border border-slate-700/50"> /الدعم_الفني </button>
+</div>
+</div>
+
+<!-- Simulation Controls Bar -->
+<div class="bg-slate-900 border-t border-slate-800 p-3 space-y-2">
+<div class="text-[11px] font-bold text-slate-400 flex items-center justify-between">
+<span>أدوات محاكاة البوت الذكي:</span>
+<span class="text-emerald-400 text-[10px]">اختبار السيناريوهات</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button id="sim-reminder-btn" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 py-1.5 px-2 rounded-lg text-[11px] font-medium transition"> 🔔 محاكاة تنبيه اليوم 28 (اقتراب الانتهاء) </button>
+<button id="sim-kick-btn" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 py-1.5 px-2 rounded-lg text-[11px] font-medium transition"> ⛔ محاكاة طرد اليوم 30 (عدم التجديد) </button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TAB 3: ANALYST ADMIN DASHBOARD -->
+<section id="section-admin" class="tab-content hidden">
+<div class="space-y-6">
+<!-- Top KPI Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+<div class="text-xs text-slate-400 font-medium">المشتركين النشطين (VIP)</div>
+<div id="stat-active-count" class="text-2xl font-black text-white mt-1">143</div>
+<div class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1"> <span>▲ +12</span> <span>هذا الأسبوع</span> </div>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+<div class="text-xs text-slate-400 font-medium">الإيراد الشهري المتكرر (MRR)</div>
+<div class="text-2xl font-black text-emerald-400 mt-1">28,457 <span class="text-xs font-normal text-slate-400">ر.س</span></div>
+<div class="text-[10px] text-slate-400 mt-1">متوسط الاشتراك: 199 ر.س</div>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+<div class="text-xs text-slate-400 font-medium">ينتهي اشتراكهم خلال 72 ساعة</div>
+<div class="text-2xl font-black text-amber-400 mt-1">9</div>
+<div class="text-[10px] text-amber-400/80 mt-1">أرسل البوت تنبيه التجديد</div>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+<div class="text-xs text-slate-400 font-medium">تم إخراجهم تلقائياً (عدم التجديد)</div>
+<div class="text-2xl font-black text-rose-400 mt-1">6</div>
+<div class="text-[10px] text-slate-400 mt-1">أتمتة كاملة بدون تدخل يدوي</div>
+</div>
+</div>
+
+<!-- Live Subscribers Table -->
+<div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 shadow-xl">
+<div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+<div>
+<h3 class="font-bold text-white text-base">سجل المشتركين اللحظي المتزامن مع سلة وتلجرام</h3>
+<p class="text-xs text-slate-400">يتم تحديث الحالة تلقائياً عند الدفع أو انتهاء الاشتراك</p>
+</div>
+<div class="flex gap-2">
+<button id="broadcast-alert-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-2 rounded-xl border border-slate-700 font-medium transition"> 📢 إرسال إشعار تجديد جماعي </button>
+<button id="add-manual-sub-btn" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs px-3 py-2 rounded-xl transition"> + إضافة مشترك يدوي </button>
+</div>
+</div>
+
+<div class="overflow-x-auto">
+<table class="w-full text-right text-xs">
+<thead class="bg-slate-900 text-slate-400 border-b border-slate-800">
+<tr>
+<th class="p-3">اسم المشترك</th>
+<th class="p-3">حساب تلجرام</th>
+<th class="p-3">الباقة</th>
+<th class="p-3">تاريخ الانتهاء</th>
+<th class="p-3">طريقة الدفع</th>
+<th class="p-3 text-center">الحالة</th>
+<th class="p-3 text-center">الإجراء</th>
+</tr>
+</thead>
+<tbody id="subscribers-tbody" class="divide-y divide-slate-800 text-slate-300">
+<tr class="hover:bg-slate-900/50">
+<td class="p-3 font-semibold text-white">مشاري العتيبي</td>
+<td class="p-3 font-mono text-slate-400">@meshari_trader</td>
+<td class="p-3">باقة تاسي VIP</td>
+<td class="p-3 font-mono">2026-12-04</td>
+<td class="p-3"><span class="text-[11px] bg-slate-800 px-2 py-0.5 rounded text-white font-mono">Apple Pay</span></td>
+<td class="p-3 text-center"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold">نشط</span></td>
+<td class="p-3 text-center"><button class="text-rose-400 hover:underline revoke-btn" data-name="مشاري العتيبي">إلغاء</button></td>
+</tr>
+<tr class="hover:bg-slate-900/50">
+<td class="p-3 font-semibold text-white">سعود الدوسري</td>
+<td class="p-3 font-mono text-slate-400">@saud_al76</td>
+<td class="p-3">باقة تاسي VIP</td>
+<td class="p-3 font-mono text-amber-400">2026-11-06 (باقي يومين)</td>
+<td class="p-3"><span class="text-[11px] bg-slate-800 px-2 py-0.5 rounded text-white font-mono">مدى Mada</span></td>
+<td class="p-3 text-center"><span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full font-bold">أوشك على الانتهاء</span></td>
+<td class="p-3 text-center"><button class="text-emerald-400 hover:underline renew-btn" data-name="سعود الدوسري">تجديد</button></td>
+</tr>
+<tr class="hover:bg-slate-900/50">
+<td class="p-3 font-semibold text-white">خالد الحربي</td>
+<td class="p-3 font-mono text-slate-400">@khalid_invest</td>
+<td class="p-3">باقة تاسي VIP</td>
+<td class="p-3 font-mono">2026-11-28</td>
+<td class="p-3"><span class="text-[11px] bg-slate-800 px-2 py-0.5 rounded text-white font-mono">Apple Pay</span></td>
+<td class="p-3 text-center"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold">نشط</span></td>
+<td class="p-3 text-center"><button class="text-rose-400 hover:underline revoke-btn" data-name="خالد الحربي">إلغاء</button></td>
+</tr>
+<tr class="hover:bg-slate-900/50">
+<td class="p-3 font-semibold text-white">عبدالعزيز القحطاني</td>
+<td class="p-3 font-mono text-slate-400">@azeez_q</td>
+<td class="p-3">باقة تاسي VIP</td>
+<td class="p-3 font-mono text-rose-400">2026-11-01 (منتهي)</td>
+<td class="p-3"><span class="text-[11px] bg-slate-800 px-2 py-0.5 rounded text-white font-mono">مدى Mada</span></td>
+<td class="p-3 text-center"><span class="bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded-full font-bold">تم الطرد تلقائياً</span></td>
+<td class="p-3 text-center"><span class="text-slate-500">تم الإجراء</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- What the Analyst Gets (Deliverables Summary) -->
+<div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6">
+<h4 class="font-bold text-white text-sm mb-3">حزمة التسليم التي يستلمها المحلل في هذه الخدمة (Done-For-You Package):</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300">
+<div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+<div class="font-bold text-emerald-400 mb-1">1. الربط التقني والويب هوك</div>
+<p class="text-slate-400">برمجة بوت تلجرام خاص باسم المحلل وربطه مع متجر سلة عبر Webhooks لتوليد روابط الانضمام المشفرة فور إتمام الدفع.</p>
+</div>
+<div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+<div class="font-bold text-emerald-400 mb-1">2. نظام التجديد والطرد التلقائي</div>
+<p class="text-slate-400">نظام مجدول يعمل 24/7 يفحص الاشتراكات المنتهية، يرسل تنبيه تجديد قبل 3 أيام، ويطرد غير المجددين بدون تدخل يدوي.</p>
+</div>
+<div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
+<div class="font-bold text-emerald-400 mb-1">3. هوية بصرية وقوالب تاسي في كانفا</div>
+<p class="text-slate-400">تصميم هيدر وبنر إكس احترافي للمحلل + 5 قوالب مخصصة لنشر فرص الأسهم وحركة السيولة لحماية التحليلات من السرقة.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<script>
+/* Tab Navigation */
+const tabCheckoutBtn = document.getElementById('tab-checkout-btn');
+const tabTelegramBtn = document.getElementById('tab-telegram-btn');
+const tabAdminBtn = document.getElementById('tab-admin-btn');
+
+const secCheckout = document.getElementById('section-checkout');
+const secTelegram = document.getElementById('section-telegram');
+const secAdmin = document.getElementById('section-admin');
+
+function switchTab(activeBtn, activeSec) {
+  [tabCheckoutBtn, tabTelegramBtn, tabAdminBtn].forEach(btn => {
+    btn.className = 'tab-btn px-3 py-1.5 rounded-lg font-medium transition text-slate-300 hover:text-white';
+  });
+  activeBtn.className = 'tab-btn px-3 py-1.5 rounded-lg font-medium transition bg-emerald-500 text-slate-950 font-bold shadow';
+
+  [secCheckout, secTelegram, secAdmin].forEach(sec => sec.classList.add('hidden'));
+  activeSec.classList.remove('hidden');
+}
+
+tabCheckoutBtn.addEventListener('click', () => switchTab(tabCheckoutBtn, secCheckout));
+tabTelegramBtn.addEventListener('click', () => switchTab(tabTelegramBtn, secTelegram));
+tabAdminBtn.addEventListener('click', () => switchTab(tabAdminBtn, secAdmin));
+
+/* Toast Helper */
+const toast = document.getElementById('toast');
+const toastText = document.getElementById('toast-text');
+function showToast(msg) {
+  toastText.textContent = msg;
+  toast.classList.remove('hidden');
+  setTimeout(() => toast.classList.add('hidden'), 3500);
+}
+
+/* Checkout simulation */
+const payAppleBtn = document.getElementById('pay-apple-btn');
+const payMadaBtn = document.getElementById('pay-mada-btn');
+const clientNameInput = document.getElementById('client-name');
+const tgBuyerName = document.getElementById('tg-buyer-name');
+
+function handlePayment(method) {
+  const name = clientNameInput.value.trim() || 'مشاري العتيبي';
+  tgBuyerName.textContent = name;
+  showToast(`تمت عملية الدفع بنجاح عبر ${method}! جاري نقلك لتلجرام...`);
+  setTimeout(() => { switchTab(tabTelegramBtn, secTelegram); }, 1000);
+}
+
+payAppleBtn.addEventListener('click', () => handlePayment('Apple Pay'));
+payMadaBtn.addEventListener('click', () => handlePayment('مدى Mada'));
+
+/* Telegram simulation */
+const tgChatBody = document.getElementById('tg-chat-body');
+const simReminderBtn = document.getElementById('sim-reminder-btn');
+const simKickBtn = document.getElementById('sim-kick-btn');
+const joinChannelBtn = document.getElementById('tg-join-channel-btn');
+
+joinChannelBtn.addEventListener('click', () => {
+  showToast('تم التحقق من الرابط بنجاح! تم الانضمام للقناة الخاصة.');
+  joinChannelBtn.textContent = '✓ أنت عضو نشط الآن في القناة الخاصة';
+  joinChannelBtn.classList.replace('from-blue-600', 'from-emerald-600');
+  joinChannelBtn.classList.replace('to-indigo-600', 'to-teal-600');
+});
+
+simReminderBtn.addEventListener('click', () => {
+  const reminderCard = document.createElement('div');
+  reminderCard.className = 'bg-amber-950/50 border border-amber-600/50 rounded-2xl p-3.5 max-w-[92%] space-y-1.5 animate-fade-in text-amber-200';
+  reminderCard.innerHTML = `
+    <div class="flex justify-between items-center text-[10px] text-amber-400 font-bold">
+      <span>🔔 تنبيه تجديد الاشتراك</span>
+      <span>اليوم 28</span>
+    </div>
+    <p>مرحباً يا ${tgBuyerName.textContent}، ينتهي اشتراكك في باقة تاسي VIP بعد 48 ساعة.</p>
+    <p class="text-[11px] text-slate-300">للاستمرار في تلقي إشارات السيولة دون انقطاع، يمكنك التجديد الآن بضغطة زر:</p>
+    <button class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-1.5 rounded-lg text-xs mt-1 transition">
+      تجديد الاشتراك عبر Apple Pay (199 ر.س)
+    </button>
+  `;
+  tgChatBody.appendChild(reminderCard);
+  tgChatBody.scrollTop = tgChatBody.scrollHeight;
+  showToast('تم إرسال إشعار التذكير الآلي لـ تلجرام المشترك');
+});
+
+simKickBtn.addEventListener('click', () => {
+  const kickCard = document.createElement('div');
+  kickCard.className = 'bg-rose-950/50 border border-rose-600/50 rounded-2xl p-3.5 max-w-[92%] space-y-1.5 animate-fade-in text-rose-200';
+  kickCard.innerHTML = `
+    <div class="flex justify-between items-center text-[10px] text-rose-400 font-bold">
+      <span>⛔ انتهاء صلاحية الاشتراك</span>
+      <span>اليوم 30</span>
+    </div>
+    <p>عزيزي المشترك، انتهت فترة اشتراكك في باقة VIP ولم يتم تسجيل تجديد.</p>
+    <p class="text-[11px] text-slate-300">تمت إزالتك من القناة الخاصة تلقائياً بواسطة البوت. نتشرف بعودتك في أي وقت عبر متجر سلة.</p>
+  `;
+  tgChatBody.appendChild(kickCard);
+  tgChatBody.scrollTop = tgChatBody.scrollHeight;
+  showToast('قام البوت بطرد العضو تلقائياً لعدم التجديد');
+});
+
+/* Bot commands */
+document.getElementById('cmd-status-btn').addEventListener('click', () => {
+  const msg = document.createElement('div');
+  msg.className = 'bg-slate-800 rounded-xl p-2.5 max-w-[85%] text-slate-200';
+  msg.innerHTML = `<strong>حالة اشتراكك:</strong> نشط ✅<br>الباقة: تاسي VIP<br>الأيام المتبقية: 28 يوماً.`;
+  tgChatBody.appendChild(msg);
+  tgChatBody.scrollTop = tgChatBody.scrollHeight;
+});
+
+document.getElementById('cmd-renew-btn').addEventListener('click', () => {
+  const msg = document.createElement('div');
+  msg.className = 'bg-slate-800 rounded-xl p-2.5 max-w-[85%] text-slate-200';
+  msg.innerHTML = `رابط التجديد المباشر عبر سلة: <br><span class="text-emerald-400 underline cursor-pointer">https://salla.sa/fahad-tasi/vip</span>`;
+  tgChatBody.appendChild(msg);
+  tgChatBody.scrollTop = tgChatBody.scrollHeight;
+});
+
+document.getElementById('cmd-support-btn').addEventListener('click', () => {
+  const msg = document.createElement('div');
+  msg.className = 'bg-slate-800 rounded-xl p-2.5 max-w-[85%] text-slate-200';
+  msg.innerHTML = `لأي استفسار تواصل مباشرة مع الإدارة: @FahadSupport`;
+  tgChatBody.appendChild(msg);
+  tgChatBody.scrollTop = tgChatBody.scrollHeight;
+});
+
+/* Admin actions */
+document.getElementById('broadcast-alert-btn').addEventListener('click', () => {
+  showToast('تم إرسال رسالة التنبيه الجماعي لجميع المشتركين المنتهية اشتراكاتهم');
+});
+
+document.getElementById('add-manual-sub-btn').addEventListener('click', () => {
+  const tbody = document.getElementById('subscribers-tbody');
+  const tr = document.createElement('tr');
+  tr.className = 'hover:bg-slate-900/50 bg-emerald-950/20';
+  tr.innerHTML = `
+    <td class="p-3 font-semibold text-white">مشترك يدوي جديد</td>
+    <td class="p-3 font-mono text-slate-400">@new_trader</td>
+    <td class="p-3">باقة تاسي VIP</td>
+    <td class="p-3 font-mono">2026-12-04</td>
+    <td class="p-3"><span class="text-[11px] bg-slate-800 px-2 py-0.5 rounded text-white font-mono">إضافة يدوية</span></td>
+    <td class="p-3 text-center"><span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold">نشط</span></td>
+    <td class="p-3 text-center"><button class="text-rose-400 hover:underline revoke-btn">إلغاء</button></td>
+  `;
+  tbody.prepend(tr);
+  const countEl = document.getElementById('stat-active-count');
+  countEl.textContent = parseInt(countEl.textContent) + 1;
+  showToast('تمت إضافة المشترك بنجاح وتوليد رابط الانضمام');
+});
+
+/* Delegate revoke and renew buttons */
+document.getElementById('subscribers-tbody').addEventListener('click', (e) => {
+  if (e.target.classList.contains('revoke-btn')) {
+    const tr = e.target.closest('tr');
+    const name = tr.querySelector('td').textContent;
+    tr.querySelector('td:nth-child(6)').innerHTML = '<span class="bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded-full font-bold">ملغي</span>';
+    showToast(`تم إلغاء اشتراك ${name} وإخراجه من القناة`);
+  } else if (e.target.classList.contains('renew-btn')) {
+    const tr = e.target.closest('tr');
+    const name = tr.querySelector('td').textContent;
+    tr.querySelector('td:nth-child(6)').innerHTML = '<span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold">تم التجديد</span>';
+    showToast(`تم تجديد اشتراك ${name} لـ 30 يوماً إضافية`);
+  }
+});
+</script>
+</body>
+</html>
